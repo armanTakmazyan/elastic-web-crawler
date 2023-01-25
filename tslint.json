@@ -1,0 +1,23 @@
+{
+    "extends": "tslint:recommended",
+    "rules": {
+        "quotemark": [true, "single"],
+        "semicolon": [true, "always"],
+        "interface-name": [true, "never-prefix"],
+        "no-console": ["debug", "info", "log", "time", "timeEnd", "trace"],
+        "trailing-comma": [true, {
+            "multiline": "always",
+            "singleline": "never"
+        }],
+        "max-line-length": {
+            "options": [120]
+        },
+        "whitespace": [true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type"
+        ]
+    }
+}
