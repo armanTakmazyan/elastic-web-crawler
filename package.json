@@ -18,13 +18,17 @@
     "clear_node_modules": "yarn rimraf node_modules",
     "clear": "yarn clear_lib && yarn clear_node_modules",
     "lint": "eslint --ext .ts,.json **/*.{ts,json}",
-    "format": "prettier --config .prettierrc.json --write **/*.{ts,json}",
+    "format": "prettier --config .prettierrc.json --write **/*.{ts,json,md}",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
-    "*.{ts, json, md}": [
-      "yarn prettier --config .prettierrc.json --write",
-      "yarn eslint",
+    "*.{ts,json,md}": [
+      "yarn prettier --config .prettierrc.json --write"
+    ],
+    "*.{ts,json}": [
+      "yarn eslint"
+    ],
+    "*.{ts}": [
       "yarn tsc --noEmit"
     ]
   },
