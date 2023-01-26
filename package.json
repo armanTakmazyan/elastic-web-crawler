@@ -13,13 +13,20 @@
   "scripts": {
     "build": "yarn clear_lib && yarn tsc",
     "build:watch": "yarn tsc --watch",
-    "prepare": "yarn build",
+    "prepare": "yarn build && husky install",
     "clear_lib": "yarn rimraf lib",
     "clear_node_modules": "yarn rimraf node_modules",
     "clear": "yarn clear_lib && yarn clear_node_modules",
     "lint": "eslint --ext .ts,.json **/*.{ts,json}",
     "format": "prettier --config .prettierrc.json --write **/*.{ts,json}",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "lint-staged": {
+    "*.{ts, json}": [
+      "yarn format",
+      "yarn lint",
+      "yarn tsc -p --noEmit"
+    ]
   },
   "dependencies": {
     "axios": "^1.2.3"
@@ -31,6 +38,7 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
     "prettier": "^2.8.3",
     "rimraf": "^4.1.2",
     "typescript": "^4.9.4"
@@ -53,10 +61,5 @@
     "elastic-app-search",
     "elastic-web-crawler",
     "crawler"
-  ],
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn format && yarn lint"
-    }
-  }
+  ]
 }
