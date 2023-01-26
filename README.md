@@ -1,17 +1,17 @@
 
 # elastic-web-crawler
 
-This is a non-official client for working with the Elastic Web Crawler API. As it uses the axios package, it works not only in browser environments but also in Node.js.
+This is an unofficial client for working with the Elastic Web Crawler API. As it utilizes the axios package, it is compatible not only in browser environments but also in Node.js.
 
 ## Installation
 
-Install with npm
+Using npm:
 
 ```bash
   npm install elastic-web-crawler
 ```
 
-Install with yarn 
+Using yarn:
 
 ```bash
   yarn add elastic-web-crawler
@@ -19,7 +19,7 @@ Install with yarn
 
 ## Usage/Examples
 
-Here is an example of a wrapper component that sets the ElasticWebCrawler instance and passes it down to its child components:
+Here is an example of a wrapper component that sets up the ElasticWebCrawler instance and passes it down to its child components:
 
 ```typescript
 import React, {PropsWithChildren, useMemo, useContext, createContext } from 'react';
@@ -52,7 +52,7 @@ export const ElasticWebCrawlerProvider = ({ children, elasticWebCrawlerArguments
 };
 
 ```
-Then in the top level of your application you can wrap your components with the ElasticWebCrawlerProvider component and pass in the client instance. Any component that needs access to the ElasticWebCrawler instance can use the useElasticWebCrawler hook to get access to it.
+Then, at the top level of your application, you can wrap your components with the ElasticWebCrawlerProvider component and pass in the client instance. Any component that needs access to the ElasticWebCrawler instance can use the useElasticWebCrawler hook to gain access to it.
 
 ```typescript
 import { ElasticWebCrawlerProvider } from './ElasticWebCrawlerContext';
@@ -76,7 +76,7 @@ const YourComponent = () => {
 };
 
 ```
-Also you can use it in Nodejs.
+Additionally, you can use it in Node.js.
 
 ```typescript
 const ElasticWebCrawler = require('elastic-web-crawler');
