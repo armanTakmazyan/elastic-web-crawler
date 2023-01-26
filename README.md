@@ -107,7 +107,6 @@ const ElasticWebCrawler = require('elastic-web-crawler');
   });
 
   const crawler = await elasticWebCrawler.crawler();
-  console.log('crawler', crawler);
 })();
 ```
 
