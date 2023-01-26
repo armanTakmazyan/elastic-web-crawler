@@ -111,6 +111,16 @@ const ElasticWebCrawler = require('elastic-web-crawler');
 })();
 ```
 
+## Appendix
+
+Please note that this package is currently being improved upon. The following features will be added in future updates:
+
+    1. Crawl rules
+    2. Entry points
+    3. User Agent
+    4. Extracting content from a URL
+    5. Tracing a URL
+
 ## 🔗 Links
 
 [![github](https://img.shields.io/badge/github-%2324292e.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/armanTakmazyan/elastic-web-crawler)
