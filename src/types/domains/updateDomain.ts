@@ -1,4 +1,5 @@
-import { DefaultCrawlRule, EntryPoint } from './createNewDomain';
+import { DefaultCrawlRule, EntryPoint, SiteMap } from './createNewDomain';
+import { CrawlRule } from '../crawlRequests';
 // The "basic" type is not supported yet
 // {
 //   "auth": {
@@ -26,7 +27,7 @@ export interface UpdateDomainResponse {
   name: string;
   document_count: number;
   entry_points: EntryPoint[];
-  crawl_rules: any[];
+  crawl_rules: CrawlRule[];
   default_crawl_rule: DefaultCrawlRule;
-  sitemaps: any[];
+  sitemaps: SiteMap[];
 }

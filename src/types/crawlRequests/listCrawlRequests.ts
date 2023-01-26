@@ -2,7 +2,7 @@ import { CrawlStatus, CrawlTemplate, CrawlType } from './createCrawl';
 
 export interface ListCrawlRequestsOptions {
   page: {
-    page?: number;
+    current?: number;
     size?: number;
   };
 }

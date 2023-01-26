@@ -29,12 +29,8 @@ export class ElasticWebCrawler {
   }
 
   async handleResponse<T>(promise: Promise<AxiosResponse<T>>): Promise<T> {
-    try {
-      const response = await promise;
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
+    const response = await promise;
+    return response.data;
   }
 
   // #region Crawler
@@ -324,7 +320,9 @@ export class ElasticWebCrawler {
     return this.handleResponse<ElasticWebCrawlerTypes.UpdateSitemapResponse>(
       this.axiosInstance.put(
         `crawler/domains/${options.domainId}/sitemaps/${options.sitemapId}`,
-        { url: options.sitemapUrl },
+        {
+          url: options.sitemapUrl,
+        },
       ),
     );
   }

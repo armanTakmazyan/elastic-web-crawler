@@ -1,4 +1,4 @@
-import { CreateNewDomainResponseResult, ResponsePage } from './createNewDomain';
+import { CreateNewDomainResponse, ResponsePage } from './createNewDomain';
 
 export interface ListDomainsOptions {
   page: {
@@ -11,5 +11,5 @@ export interface ListDomainsResponse {
   meta: {
     page: ResponsePage;
   };
-  results: CreateNewDomainResponseResult[];
+  results: CreateNewDomainResponse[];
 }
