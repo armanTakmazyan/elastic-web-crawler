@@ -23,9 +23,9 @@
   },
   "lint-staged": {
     "*.{ts, json}": [
-      "yarn format",
-      "yarn lint",
-      "yarn tsc -p --noEmit"
+      "yarn prettier --config .prettierrc.json --write",
+      "yarn eslint",
+      "yarn tsc --noEmit"
     ]
   },
   "dependencies": {

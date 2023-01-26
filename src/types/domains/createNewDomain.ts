@@ -1,12 +1,3 @@
-// The "basic" type is not supported yet
-// {
-//   "auth": {
-//     "type": "basic",
-//     "username": "kimchy",
-//     "password": ":)"
-//   }
-// }
-
 import { CrawlRule } from '../crawlRequests';
 
 export interface DefaultCrawlRule {
@@ -37,6 +28,14 @@ export interface SiteMap {
   created_at: string;
 }
 
+// The "basic" type is not supported yet
+// {
+//   "auth": {
+//     "type": "basic",
+//     "username": "kimchy",
+//     "password": ":)"
+//   }
+// }
 export interface CreateNewDomainOptions {
   name: string;
   auth?: {
