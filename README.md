@@ -1,4 +1,3 @@
-
 # elastic-web-crawler
 
 This is an unofficial client for working with the Elastic Web Crawler API. As it utilizes the axios package, it is compatible not only in browser environments but also in Node.js.
@@ -22,81 +21,99 @@ Using yarn:
 Here is an example of a wrapper component that sets up the ElasticWebCrawler instance and passes it down to its child components:
 
 ```typescript
-import React, {PropsWithChildren, useMemo, useContext, createContext } from 'react';
-import { ElasticWebCrawler, ElasticWebCrawlerRequiredArguments } from 'elastic-web-crawler';
+import React, {
+  PropsWithChildren,
+  createContext,
+  useContext,
+  useMemo,
+} from 'react';
+import {
+  ElasticWebCrawler,
+  ElasticWebCrawlerRequiredArguments,
+} from 'elastic-web-crawler';
 
 export const ElasticWebCrawlerContext = createContext<ElasticWebCrawler | null>(
   null,
 );
 
 export const useElasticWebCrawler = () => {
-    const elasticWebCrawler = useContext(ElasticWebCrawlerContext) as ElasticWebCrawler;
-    if (!elasticWebCrawler) {
-        throw new Error('ElasticWebCrawler not found. Make sure to use the ElasticWebCrawlerProvider at the top level of your application.');
-    }
-    return elasticWebCrawler;
+  const elasticWebCrawler = useContext(
+    ElasticWebCrawlerContext,
+  ) as ElasticWebCrawler;
+  if (!elasticWebCrawler) {
+    throw new Error(
+      'ElasticWebCrawler not found. Make sure to use the ElasticWebCrawlerProvider at the top level of your application.',
+    );
+  }
+  return elasticWebCrawler;
 };
 
 export interface ElasticWebCrawlerProviderProps {
   elasticWebCrawlerArguments: ElasticWebCrawlerRequiredArguments;
 }
 
-export const ElasticWebCrawlerProvider = ({ children, elasticWebCrawlerArguments }: PropsWithChildren<ElasticWebCrawlerProviderProps>) => {
-  const elasticWebCrawler = useMemo(() => new ElasticWebCrawler(elasticWebCrawlerArguments), [elasticWebCrawlerArguments]);
+export const ElasticWebCrawlerProvider = ({
+  children,
+  elasticWebCrawlerArguments,
+}: PropsWithChildren<ElasticWebCrawlerProviderProps>) => {
+  const elasticWebCrawler = useMemo(
+    () => new ElasticWebCrawler(elasticWebCrawlerArguments),
+    [elasticWebCrawlerArguments],
+  );
 
   return (
-      <ElasticWebCrawlerContext.Provider value={elasticWebCrawler}>
-          {children}
-      </ElasticWebCrawlerContext.Provider>
+    <ElasticWebCrawlerContext.Provider value={elasticWebCrawler}>
+      {children}
+    </ElasticWebCrawlerContext.Provider>
   );
 };
-
 ```
+
 Then, at the top level of your application, you can wrap your components with the ElasticWebCrawlerProvider component and pass in the client instance. Any component that needs access to the ElasticWebCrawler instance can use the useElasticWebCrawler hook to gain access to it.
 
 ```typescript
 import { ElasticWebCrawlerProvider } from './ElasticWebCrawlerContext';
 import { useElasticWebCrawler } from './ElasticWebCrawlerContext';
 
-
-
 const App = () => (
-    <ElasticWebCrawlerProvider elasticWebCrawlerArguments={{
-        engineName: 'engineName',
-        baseUrl: 'baseUrl',
-        token: 'token'
-    }}>
-        <YourComponent />
-    </ElasticWebCrawlerProvider>
+  <ElasticWebCrawlerProvider
+    elasticWebCrawlerArguments={{
+      engineName: 'engineName',
+      baseUrl: 'baseUrl',
+      token: 'token',
+    }}
+  >
+    <YourComponent />
+  </ElasticWebCrawlerProvider>
 );
 
 const YourComponent = () => {
-    const elasticWebCrawler = useElasticWebCrawler();
-    // use the crawler instance here
+  const elasticWebCrawler = useElasticWebCrawler();
+  // use the crawler instance here
 };
-
 ```
+
 Additionally, you can use it in Node.js.
 
 ```typescript
 const ElasticWebCrawler = require('elastic-web-crawler');
 
 (async () => {
-    const elasticWebCrawler = new ElasticWebCrawler({
-        engineName: 'engineName',
-        baseUrl: 'baseUrl',
-        token: 'token'
-    });
+  const elasticWebCrawler = new ElasticWebCrawler({
+    engineName: 'engineName',
+    baseUrl: 'baseUrl',
+    token: 'token',
+  });
 
-    const crawler = await elasticWebCrawler.crawler();
-    console.log('crawler', crawler);
+  const crawler = await elasticWebCrawler.crawler();
+  console.log('crawler', crawler);
 })();
-
 ```
 
 ## 🔗 Links
+
 [![github](https://img.shields.io/badge/github-%2324292e.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/armanTakmazyan/elastic-web-crawler)
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
 
+[MIT](https://choosealicense.com/licenses/mit/)
