@@ -40,6 +40,7 @@ export const useElasticWebCrawler = () => {
   const elasticWebCrawler = useContext(
     ElasticWebCrawlerContext,
   ) as ElasticWebCrawler;
+
   if (!elasticWebCrawler) {
     throw new Error(
       'ElasticWebCrawler not found. Make sure to use the ElasticWebCrawlerProvider at the top level of your application.',
