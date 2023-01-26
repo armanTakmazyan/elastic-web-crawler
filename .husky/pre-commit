@@ -2,6 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 . "$(dirname -- "$0")/common.sh"
 
-exec >/dev/tty 2>&1
-
 npx lint-staged
