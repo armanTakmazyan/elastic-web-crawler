@@ -7,6 +7,8 @@
 //   }
 // }
 
+import { CrawlRule } from '../crawlRequests';
+
 export interface DefaultCrawlRule {
   id: string;
   order: number;
@@ -43,7 +45,7 @@ export interface CreateNewDomainOptions {
   };
 }
 
-export interface CreateNewDomainResponseResult {
+export interface CreateNewDomainResponse {
   id: string;
   name: string;
   document_count: number;
@@ -56,9 +58,7 @@ export interface CreateNewDomainResponseResult {
   created_at: string;
   last_visited_at: string | null;
   entry_points: EntryPoint[];
-  crawl_rules: any[];
+  crawl_rules: CrawlRule[];
   default_crawl_rule: DefaultCrawlRule;
   sitemaps: SiteMap[];
 }
-
-export type CreateNewDomainResponse = CreateNewDomainResponseResult[];

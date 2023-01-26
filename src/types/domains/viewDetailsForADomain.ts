@@ -1,7 +1,7 @@
-import { CreateNewDomainResponseResult } from './createNewDomain';
+import { CreateNewDomainResponse } from './createNewDomain';
 
 export interface ViewDetailsForADomainOptions {
   domainId: string;
 }
 
-export type ViewDetailsForADomainResponse = CreateNewDomainResponseResult;
+export type ViewDetailsForADomainResponse = CreateNewDomainResponse;

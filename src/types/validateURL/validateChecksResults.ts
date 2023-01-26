@@ -43,7 +43,7 @@ export interface ResultForDNS {
 export interface ResultForRobotsTxt {
   result: URLCheckResult;
   name: 'robots_txt';
-  details: {};
+  details: object;
   comment: string;
 }
 export interface ResultForTCP {
@@ -58,13 +58,13 @@ export interface ResultForTCP {
 export interface ResultForURL {
   result: URLCheckResult;
   name: 'url';
-  details: {};
+  details: object;
   comment: string;
 }
 export interface ResultForURLContent {
   result: URLCheckResult;
   name: 'url_content';
-  details: {};
+  details: object;
   comment: string;
 }
 export interface ResultForURLRequest {
