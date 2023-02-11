@@ -1,8 +1,9 @@
 {
   "name": "elastic-web-crawler",
-  "version": "0.1.0",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "version": "1.0.0",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
   "files": [
     "lib/**/*"
   ],
@@ -11,15 +12,18 @@
   "description": "A web crawler library for the Elasticsearch Crawler API",
   "sideEffects": false,
   "scripts": {
-    "build": "yarn clear_lib && yarn tsc",
-    "build:watch": "yarn tsc --watch",
-    "prepare": "yarn build && husky install",
+    "prepack": "yarn build",
+    "prebuild": "yarn clear_lib",
+    "build": "rollup -c --bundleConfigAsCjs",
+    "watch": "rollup -cw --bundleConfigAsCjs",
+    "prepare": "husky install",
     "clear_lib": "yarn rimraf lib",
     "clear_node_modules": "yarn rimraf node_modules",
     "clear": "yarn clear_lib && yarn clear_node_modules",
     "type_check": "yarn tsc --noEmit",
     "lint": "eslint --ext .ts,.json **/*.{ts,json}",
-    "format": "prettier --write **/*.{ts,json,md}",
+    "format": "prettier --write **/*.{ts,js,json,md}",
+    "publish_npm": "yarn build && npm publish --latest",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
@@ -38,7 +42,9 @@
     "query-string": "^8.1.0"
   },
   "devDependencies": {
-    "@types/node": "^18.13.0",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.1",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
     "eslint": "^8.32.0",
@@ -48,6 +54,9 @@
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.3",
     "rimraf": "^4.1.2",
+    "rollup": "^3.15.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.34.1",
     "typescript": "^4.9.4"
   },
   "publishConfig": {
