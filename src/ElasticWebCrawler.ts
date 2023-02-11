@@ -1,9 +1,6 @@
+import axios, { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios';
 import * as ElasticWebCrawlerTypes from './types';
-import axios, {
-  CreateAxiosDefaults,
-  AxiosInstance,
-  AxiosResponse,
-} from 'axios';
+import queryString from 'query-string';
 
 export class ElasticWebCrawler {
   readonly baseUrl: string;
@@ -16,8 +13,11 @@ export class ElasticWebCrawler {
     this.baseUrl = requiredArguments.baseUrl;
     this.engineName = requiredArguments.engineName;
     this.token = requiredArguments.token;
-    const axiosDefaultConfig: CreateAxiosDefaults = {
+    const axiosDefaultConfig: AxiosRequestConfig = {
       baseURL: `${this.baseUrl}/api/as/v1/engines/${this.engineName}/`,
+      paramsSerializer: {
+        encode: params => queryString.stringify(params),
+      },
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${this.token}`,
@@ -74,8 +74,12 @@ export class ElasticWebCrawler {
   async listCrawlRequests(
     options?: ElasticWebCrawlerTypes.ListCrawlRequestsOptions,
   ): Promise<ElasticWebCrawlerTypes.ListCrawlRequestsResponse> {
+    const params = options && {
+      'page[current]': options.page.current,
+      'page[size]': options.page.size,
+    };
     return this.handleResponse<ElasticWebCrawlerTypes.ListCrawlRequestsResponse>(
-      this.axiosInstance.get('crawler/crawl_requests', { params: options }),
+      this.axiosInstance.get('crawler/crawl_requests', { params }),
     );
   }
 
@@ -157,8 +161,12 @@ export class ElasticWebCrawler {
   async listProcessCrawls(
     options?: ElasticWebCrawlerTypes.ListProcessCrawlsOptions,
   ): Promise<ElasticWebCrawlerTypes.ListProcessCrawlsResponse> {
+    const params = options && {
+      'page[current]': options.page.current,
+      'page[size]': options.page.size,
+    };
     return this.handleResponse<ElasticWebCrawlerTypes.ListProcessCrawlsResponse>(
-      this.axiosInstance.get('/crawler/process_crawls', { params: options }),
+      this.axiosInstance.get('/crawler/process_crawls', { params }),
     );
   }
 
@@ -205,12 +213,41 @@ export class ElasticWebCrawler {
   // #region URL validation and debugging
   /**
    *
+   * @descriptionA A POST request to validate a domain using engine
+   */
+  async validateDomainUsingEngine(
+    options: ElasticWebCrawlerTypes.ValidateDomainOptions,
+  ): Promise<ElasticWebCrawlerTypes.ValidateDomainResponse> {
+    return this.handleResponse<ElasticWebCrawlerTypes.ValidateDomainResponse>(
+      this.axiosInstance.post('crawler/validate_url', options),
+    );
+  }
+
+  /**
+   *
    * @descriptionA A POST request to validate a domain
    */
   async validateDomain(
     options: ElasticWebCrawlerTypes.ValidateDomainOptions,
   ): Promise<ElasticWebCrawlerTypes.ValidateDomainResponse> {
     return this.handleResponse<ElasticWebCrawlerTypes.ValidateDomainResponse>(
+      this.axiosInstance({
+        method: 'post',
+        url: 'crawler/validate_url',
+        baseURL: `${this.baseUrl}/api/as/v1/`,
+        data: options,
+      }),
+    );
+  }
+
+  /**
+   *
+   * @description A POST request to validate a url using engine
+   */
+  async validateUrlUsingEngine(
+    options: ElasticWebCrawlerTypes.ValidateUrlOptions,
+  ): Promise<ElasticWebCrawlerTypes.ValidateUrlResponse> {
+    return this.handleResponse<ElasticWebCrawlerTypes.ValidateUrlResponse>(
       this.axiosInstance.post('crawler/validate_url', options),
     );
   }
@@ -223,7 +260,12 @@ export class ElasticWebCrawler {
     options: ElasticWebCrawlerTypes.ValidateUrlOptions,
   ): Promise<ElasticWebCrawlerTypes.ValidateUrlResponse> {
     return this.handleResponse<ElasticWebCrawlerTypes.ValidateUrlResponse>(
-      this.axiosInstance.post('crawler/validate_url', options),
+      this.axiosInstance({
+        method: 'post',
+        url: 'crawler/validate_url',
+        baseURL: `${this.baseUrl}/api/as/v1/`,
+        data: options,
+      }),
     );
   }
 
@@ -237,8 +279,12 @@ export class ElasticWebCrawler {
   async listDomains(
     options?: ElasticWebCrawlerTypes.ListDomainsOptions,
   ): Promise<ElasticWebCrawlerTypes.ListDomainsResponse> {
+    const params = options && {
+      'page[current]': options.page.current,
+      'page[size]': options.page.size,
+    };
     return this.handleResponse<ElasticWebCrawlerTypes.ListDomainsResponse>(
-      this.axiosInstance.get(`crawler/domains`, { params: options }),
+      this.axiosInstance.get(`crawler/domains`, { params }),
     );
   }
 

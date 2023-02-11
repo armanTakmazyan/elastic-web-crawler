@@ -1,6 +1,6 @@
 # elastic-web-crawler
 
-This is an unofficial client for working with the Elastic Web Crawler API. As it utilizes the axios package, it is compatible not only in browser environments but also in Node.js.
+This is an unofficial client for working with the Elastic Web Crawler API. This package is isomorphic, allowing it to be utilized in both browser and Node.js environments.
 
 ## Installation
 
