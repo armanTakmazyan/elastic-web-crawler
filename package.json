@@ -17,13 +17,14 @@
     "clear_lib": "yarn rimraf lib",
     "clear_node_modules": "yarn rimraf node_modules",
     "clear": "yarn clear_lib && yarn clear_node_modules",
+    "check": "yarn tsc --noEmit",
     "lint": "eslint --ext .ts,.json **/*.{ts,json}",
-    "format": "prettier --config .prettierrc.json --write **/*.{ts,json,md}",
+    "format": "prettier --write **/*.{ts,json,md}",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
     "*.{ts,json,md}": [
-      "yarn prettier --config .prettierrc.json --write"
+      "yarn prettier --write"
     ],
     "*.{ts,json}": [
       "yarn eslint"
@@ -33,9 +34,11 @@
     ]
   },
   "dependencies": {
-    "axios": "^1.2.3"
+    "axios": "^1.2.3",
+    "query-string": "^8.1.0"
   },
   "devDependencies": {
+    "@types/node": "^18.13.0",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
     "eslint": "^8.32.0",

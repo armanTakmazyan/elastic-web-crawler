@@ -4,4 +4,4 @@
 
 yarn format
 yarn lint
-yarn tsc --noEmit
+yarn check
