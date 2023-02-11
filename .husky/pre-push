@@ -4,4 +4,4 @@
 
 yarn format
 yarn lint
-yarn check
+yarn type_check
