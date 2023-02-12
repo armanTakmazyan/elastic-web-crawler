@@ -9,7 +9,7 @@
   ],
   "author": "Arman Takmazyan",
   "license": "MIT",
-  "description": "A web crawler library for the Elasticsearch Crawler API",
+  "description": "This is a client for the Elasticsearch Crawler API",
   "sideEffects": false,
   "scripts": {
     "prepack": "yarn build",
