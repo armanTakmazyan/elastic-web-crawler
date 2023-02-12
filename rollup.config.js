@@ -31,7 +31,7 @@ const buildConfig = ({ format = 'cjs', browser = false } = {}) => {
       typescript(),
       babel({
         presets: [['@babel/preset-env']],
-        babelHelpers: 'bundled'
+        babelHelpers: 'bundled',
       }),
       terser(),
     ],
