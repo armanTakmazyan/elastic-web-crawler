@@ -16,7 +16,7 @@ export class ElasticWebCrawler {
     const axiosDefaultConfig: AxiosRequestConfig = {
       baseURL: `${this.baseUrl}/api/as/v1/engines/${this.engineName}/`,
       paramsSerializer: {
-        encode: params => queryString.stringify(params),
+        serialize: params => queryString.stringify(params),
       },
       headers: {
         'Content-Type': 'application/json',
