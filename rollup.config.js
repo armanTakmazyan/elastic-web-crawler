@@ -1,5 +1,4 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import autoExternal from 'rollup-plugin-auto-external';
 import typescript from 'rollup-plugin-typescript2';
 import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
@@ -22,7 +21,6 @@ const buildConfig = ({ format = 'cjs', browser = false } = {}) => {
     ],
     external: [...Object.keys(packageConfig.peerDependencies || {})],
     plugins: [
-      autoExternal(),
       nodeResolve({
         browser,
       }),
