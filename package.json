@@ -23,7 +23,7 @@
     "type_check": "yarn tsc --noEmit",
     "lint": "eslint --ext .ts,.json **/*.{ts,json}",
     "format": "prettier --write **/*.{ts,js,json,md}",
-    "publish_npm": "yarn build && npm publish --latest",
+    "publish_npm": "npm publish --latest",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
