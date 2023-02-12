@@ -56,7 +56,7 @@ export interface CrawlStatistics {
     http_client: {
       [key: string]: number;
     };
-    urls_denied: {
+    urls_denied?: {
       [key: string]: number;
     };
   };
